@@ -50,7 +50,8 @@ label variable ChangeSalaryGradeC "cumulative count of SalaryGrade increase for 
 
 sort IDlse YearMonth
 generate temp = PromWL
-by IDlse (YearMonth), sort: replace temp = temp[_n] + temp[_n-1] if _n>1 & PromWL!=.
+by IDlse (YearMonth), sort: replace temp = temp[_n] + temp[_n-1] if _n>1 & PromWL!=. & YearMonth==YearMonth[_n-1]+1
+	//&? The construction for this variable also changes.
 replace temp = 0 if temp==. & PromWL!=.
 generate PromWLC = temp 
 drop temp 

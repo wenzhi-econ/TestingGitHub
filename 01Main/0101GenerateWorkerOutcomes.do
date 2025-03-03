@@ -32,7 +32,8 @@ sort IDlse YearMonth
 
 sort IDlse YearMonth
 generate ChangeSalaryGrade = 0 & SalaryGrade!=.
-replace  ChangeSalaryGrade = 1 if IDlse==IDlse[_n-1] & SalaryGrade!=SalaryGrade[_n-1] & SalaryGrade!=.
+replace  ChangeSalaryGrade = 1 if IDlse==IDlse[_n-1] & SalaryGrade!=SalaryGrade[_n-1] & SalaryGrade!=. & YearMonth==YearMonth[_n-1]+1
+	//&? The original codes ignore a special case: two consecutive rows for one person may not come from adjacent months.
 
 generate temp = ChangeSalaryGrade
 by IDlse (YearMonth), sort: replace temp = temp[_n] + temp[_n-1] if _n>1 

@@ -61,8 +61,6 @@ if 	"`c(username)'" == "virginia_m"   {
     global user = "C:/Users/virginia_m/Dropbox/JMP_Managers"
 }
 
-if  "`c(username)'" == "RA" global user = "C:/Users/RA"
-
 cd "${user}"
 
 * Paper Managers folder
